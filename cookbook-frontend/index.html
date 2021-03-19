@@ -48,9 +48,32 @@
 
     <script id="recipes-index" type="text/x-handlebars-template">
         <div class="cell">
-          <h5>{{attributes.name}}</h5>
+          <h4><a href="#" id="{{id}}" class="show-recipe">{{attributes.name}}</a></h4>
           <p>{{attributes.introduction}}</p>
         </div>
+    </script>
+
+    <script id="show-recipe" type="text/x-handlebars-template">
+      <div class="grid-container">
+        <div class="grid-x">
+          <div class="cell text-center">
+            <h1>{{attributes.name}}</h1>
+            <p>{{attributes.introduction}}</p>
+          </div>
+
+          <div class="cell">
+            <h3>Ingredients</>
+            <ul>
+              {{#each ingredients}}
+                <li>{{attributes.name}}</li>
+              {{/each}}
+            </ul>
+
+            <h3>Method</h3>
+            <p>{{attributes.method}}</p>
+          </div>
+        </div>
+      </div>
     </script>
 
     <script id="ingredients-index" type="text/x-handlebars-template">
@@ -66,6 +89,7 @@
     </script>
   </body>
 </html>
+
 
 
 
