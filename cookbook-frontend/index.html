@@ -11,13 +11,15 @@
     <div class="off-canvas-wrapper">
       <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
-        <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+        <div class="off-canvas position-left reveal-for-large" id="nav-menu" data-off-canvas data-position="left">
           <div class="grid-x grid-padding-x grid-padding-y">
             <div class="cell">
               <h5>Cookbook</h5>
 
-              <p>This is where I keep all my favourite things to eat</p>
-              <p>Create some recipes with nutritional information</p>
+              <ul class="menu vertical">
+                <li class="menu-item"><a href="#" id="recipes">Recipes</a></li>
+                <li class="menu-item"><a href="#" id="ingredients">Ingredients</a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -25,7 +27,7 @@
         <div class="off-canvas-content" data-off-canvas-content>
           <div class="title-bar hide-for-large">
             <div class="title-bar-left">
-              <button class="menu-icon" type="button" data-open="my-info"></button>
+              <button class="menu-icon" type="button" data-open="nav-menu"></button>
               <span class="title-bar-title">Damien de Lartigue</span>
             </div>
           </div>
@@ -44,10 +46,22 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="index.js"></script>
 
-    <script id="recipes" type="text/x-handlebars-template">
+    <script id="recipes-index" type="text/x-handlebars-template">
         <div class="cell">
           <h5>{{attributes.name}}</h5>
           <p>{{attributes.introduction}}</p>
+        </div>
+    </script>
+
+    <script id="ingredients-index" type="text/x-handlebars-template">
+        <div class="cell">
+          <h5>{{attributes.name}}</h5>
+          <ul class='no-bullet'>
+            <li>{{attributes.calories}} calories per 100g</li>
+            <li>{{attributes.protein}} percent protein</li>
+            <li>{{attributes.fat}} percent fat</li>
+            <li>{{attributes.carb}} percent carbohydrates</li>
+          </ul>
         </div>
     </script>
   </body>
