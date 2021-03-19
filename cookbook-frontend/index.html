@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <title>Classy Cookbook | Welcome</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
   </head>
   <body>
@@ -12,10 +12,13 @@
       <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
         <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
-          <div class="grid-x cell">
-            <br>
-            <h5>Cookbook</h5>
-            <p>Create some recipes with nutritional information</p>
+          <div class="grid-x grid-padding-x grid-padding-y">
+            <div class="cell">
+              <h5>Cookbook</h5>
+
+              <p>This is where I keep all my favourite things to eat</p>
+              <p>Create some recipes with nutritional information</p>
+            </div>
           </div>
         </div>
 
@@ -23,7 +26,7 @@
           <div class="title-bar hide-for-large">
             <div class="title-bar-left">
               <button class="menu-icon" type="button" data-open="my-info"></button>
-              <span class="title-bar-title">Mike Mikerson</span>
+              <span class="title-bar-title">Damien de Lartigue</span>
             </div>
           </div>
           <div class="callout primary">
@@ -31,14 +34,7 @@
               <h1>Classy cookbook</h1>
             </div>
           </div>
-          <div id="content" class="grid-x small-up-2 medium-up-3 large-up-4 grid-padding-x grid-padding-y">
-            
-
-          </div>
-
-          <hr>
-
-
+          <div id="content" class="grid-x small-up-2 medium-up-3 large-up-4 grid-padding-x grid-padding-y"></div>
         </div>
       </div>
     </div>
@@ -48,13 +44,11 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="index.js"></script>
 
-    <script id="recipes" type="text/x-custom-template">
-      {{#each recipes}}
+    <script id="recipes" type="text/x-handlebars-template">
         <div class="cell">
-          <h5>{{name}}</h5>
-          <p>{{introduction}}></p>
+          <h5>{{attributes.name}}</h5>
+          <p>{{attributes.introduction}}</p>
         </div>
-      {{/each}}
     </script>
   </body>
 </html>
