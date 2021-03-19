@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
-	has_and_belongs_to_many :ingredients
+	has_many :recipe_ingredients
+	has_many :ingredients, through: :recipe_ingredients
 
-	validates_presence_of :name, :instructions
+	validates_presence_of :name, :method, :introduction
 	validates_uniqueness_of :name
 end
