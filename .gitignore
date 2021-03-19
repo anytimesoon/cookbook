@@ -1,67 +1,67 @@
-*.rbc
-capybara-*.html
-.rspec
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/db/*.sqlite3-[0-9]*
-/public/system
-/coverage/
-/spec/tmp
-*.orig
-rerun.txt
-pickle-email-*.html
+cookbook-backend/*.rbc
+cookbook-backend/capybara-*.html
+cookbook-backend/.rspec
+cookbook-backend/db/*.sqlite3
+cookbook-backend/db/*.sqlite3-journal
+cookbook-backend/db/*.sqlite3-[0-9]*
+cookbook-backend/public/system
+cookbook-backend/coverage/
+cookbook-backend/spec/tmp
+cookbook-backend/*.orig
+cookbook-backend/rerun.txt
+cookbook-backend/pickle-email-*.html
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
+/cookbook-backend/log/*
+/cookbook-backend/tmp/*
 !/log/.keep
 !/tmp/.keep
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
-config/initializers/secret_token.rb
-config/master.key
+cookbook-backend/config/initializers/secret_token.rb
+cookbook-backend/config/master.key
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
-.env
+cookbook-backend/.env
 
 ## Environment normalization:
-/.bundle
-/vendor/bundle
+cookbook-backend/.bundle
+cookbook-backend/vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
+cookbook-backend/.rvmrc
 
 # if using bower-rails ignore default bower_components path bower.json files
-/vendor/assets/bower_components
-*.bowerrc
-bower.json
+cookbook-backend/vendor/assets/bower_components
+cookbook-backend/*.bowerrc
+cookbook-backend/bower.json
 
 # Ignore pow environment settings
-.powenv
+cookbook-backend/.powenv
 
 # Ignore Byebug command history file.
-.byebug_history
+cookbook-backend/.byebug_history
 
 # Ignore node_modules
-node_modules/
+cookbook-backend/node_modules/
 
 # Ignore precompiled javascript packs
-/public/packs
-/public/packs-test
-/public/assets
+cookbook-backend/public/packs
+cookbook-backend/public/packs-test
+cookbook-backend/public/assets
 
 # Ignore yarn files
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
+cookbook-backend/yarn-error.log
+cookbook-backend/yarn-debug.log*
+cookbook-backend/.yarn-integrity
 
 # Ignore uploaded files in development
-/storage/*
-!/storage/.keep
+cookbook-backend/storage/*
+cookbook-backend/!/storage/.keep
