@@ -31,7 +31,6 @@ function index(json, source){
 	};
   // get the element to set the new HTML into
   const destination = document.querySelector("#content");
-
   // set the new HTML
   destination.innerHTML = html;
 
@@ -59,7 +58,7 @@ function bindShowLinks(){
 	    fetch('http://localhost:3000/recipes/' + id)
 		// Handle success
 		    .then(response => response.json())  // convert to json
-		    .then(json => show(json, document.querySelector("#show-recipe").innerHTML))    //print data to console
+		    .then(json => show(json, document.querySelector("#show-recipe").innerHTML))    //print data to console 
 		    .catch(err => console.log('Request Failed', err)); // Catch errors	
 	};
 

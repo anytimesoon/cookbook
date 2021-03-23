@@ -62,10 +62,10 @@
           </div>
 
           <div class="cell">
-            <h3>Ingredients</>
+            <h3>Ingredients</h3>
             <ul>
-              {{#each ingredients}}
-                <li>{{attributes.name}}</li>
+              {{#each attributes.ingredients_with_qty}}
+                <li>{{this}}</li>
               {{/each}}
             </ul>
 
