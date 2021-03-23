@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Recipe.create(name: 'Yummy Cheese on Toast', method: "Really easy steps", introduction: "You need to try this!!!")
-# Recipe.create(name: 'Roast Potatoes', method: "Really easy steps", introduction: "Crispy on the outside, soft on the inside")
-# Recipe.create(name: 'Creamy Pesto', method: "Really easy steps", introduction: "Omnomnomnomnomnomnomnom")
+Recipe.create(name: 'Yummy Cheese on Toast', method: "Really easy steps", introduction: "You need to try this!!!")
+Recipe.create(name: 'Roast Potatoes', method: "Really easy steps", introduction: "Crispy on the outside, soft on the inside")
+Recipe.create(name: 'Creamy Pesto', method: "Really easy steps", introduction: "Omnomnomnomnomnomnomnom")
 
-# Ingredient.create(name: 'Cheddar', calories: 300, protein: 30, fat: 50, carb: 20)
-# Ingredient.create(name: 'Toast', calories: 400, protein: 10, fat: 10, carb: 80)
-# Ingredient.create(name: 'Potatoes', calories: 250, protein: 20, fat: 30, carb: 50)
-# Ingredient.create(name: 'Butter', calories: 500, protein: 10, fat: 90, carb: 0)
-# Ingredient.create(name: 'Basil', calories: 20, protein: 30, fat: 0, carb: 70)
-# Ingredient.create(name: 'Parmasan', calories: 300, protein: 30, fat: 50, carb: 20)
-# Ingredient.create(name: 'Pine Nuts', calories: 300, protein: 45, fat: 45, carb: 10)
+Ingredient.create(name: 'Cheddar', calories: 300, protein: 30, fat: 50, carb: 20)
+Ingredient.create(name: 'Toast', calories: 400, protein: 10, fat: 10, carb: 80)
+Ingredient.create(name: 'Potatoes', calories: 250, protein: 20, fat: 30, carb: 50)
+Ingredient.create(name: 'Butter', calories: 500, protein: 10, fat: 90, carb: 0)
+Ingredient.create(name: 'Basil', calories: 20, protein: 30, fat: 0, carb: 70)
+Ingredient.create(name: 'Parmasan', calories: 300, protein: 30, fat: 50, carb: 20)
+Ingredient.create(name: 'Pine Nuts', calories: 300, protein: 45, fat: 45, carb: 10)
 
 
 RecipeIngredient.create(recipe_id: 1, ingredient_id: 1, qty: '100g')
