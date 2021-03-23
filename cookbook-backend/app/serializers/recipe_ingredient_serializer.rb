@@ -1,4 +1,4 @@
-class IngredientSerializer
+class RecipeIngredientSerializer
   include JSONAPI::Serializer
   attributes :qty
   belongs_to :recipe
