@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 20210319204212) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.string "qty"
     t.integer "calories"
     t.integer "protein"
     t.integer "fat"
@@ -26,6 +25,7 @@ ActiveRecord::Schema.define(version: 20210319204212) do
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "ingredient_id"
+    t.string "qty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
