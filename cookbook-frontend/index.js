@@ -1,24 +1,34 @@
 $(document).foundation();
 
-document.addEventListener('DOMContentLoaded', function(){
-	getRecipes();
-});
-
-function getRecipes(){
-	fetch('http://localhost:3000/recipes')
+// Define the Recipes constructor
+class RecipesConstructor {
+	getRecipes(){
+		fetch('http://localhost:3000/recipes')
 		// Handle success
 	    .then(response => response.json())  // convert to json
-	    .then(json => index(json, document.querySelector("#recipes-index").innerHTML))    //print data to console
+	    .then(json => index(json, document.querySelector("#recipes-index").innerHTML)) 
 	    .catch(err => console.log('Request Failed', err)); // Catch errors	
-};
-
-function getIngredients(){
-	fetch('http://localhost:3000/ingredients')
-		// Handle success
-	    .then(response => response.json())  // convert to json
-	    .then(json => index(json, document.querySelector("#ingredients-index").innerHTML))    //print data to console
-	    .catch(err => console.log('Request Failed', err)); // Catch errors	
+	}
 }
+
+// Define the Ingredients Constructor
+class IngredientsConstructor {
+	getIngredients(){
+		fetch('http://localhost:3000/ingredients')
+		// Handle success
+	    .then(response => response.json())  // convert to json
+	    .then(json => index(json, document.querySelector("#ingredients-index").innerHTML))
+	    .catch(err => console.log('Request Failed', err)); // Catch errors	
+	}
+}
+
+const recipeIndex = new RecipesConstructor();
+const ingredientIndex = new IngredientsConstructor();
+
+document.addEventListener('DOMContentLoaded', function(){
+	// getRecipes();
+	recipeIndex.getRecipes();
+});
 
 function index(json, source){
   // compile it using Handlebars
@@ -68,11 +78,11 @@ function bindShowLinks(){
 }
 
 document.querySelector("#recipes").addEventListener('click', function(){
-	getRecipes();
+	recipeIndex.getRecipes();
 	$('#nav-menu').foundation('close');
 });
 
 document.querySelector("#ingredients").addEventListener('click', function(){
-	getIngredients();
+	ingredientIndex.getIngredients();
 	$('#nav-menu').foundation('close');
 });
