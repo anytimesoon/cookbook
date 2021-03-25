@@ -36,7 +36,7 @@
               <h1>Classy cookbook</h1>
             </div>
           </div>
-          <div id="content" class="grid-x small-up-2 medium-up-3 large-up-4 grid-padding-x grid-padding-y"></div>
+          <div id="content" class="grid-x grid-padding-x grid-padding-y"></div>
         </div>
       </div>
     </div>
@@ -47,13 +47,43 @@
     <script src="index.js"></script>
 
     <script id="recipes-index" type="text/x-handlebars-template">
-        <div class="cell">
+      <div class="cell">
+        <ul id="form-accordion" class="accordion" data-accordion data-allow-all-closed="true">
+          <li class="accordion-item" data-accordion-item>
+
+            <a href="#" class="accordion-title is-active">New Recipe</a>
+
+            <div class="accordion-content" data-tab-content>
+              <p>Panel 1. Lorem ipsum dolor</p>
+              <a href="#">Nowhere to Go</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      {{#each recipeArr}}
+        <div class="cell medium-4">
           <h4><a href="#" id="{{id}}" class="show-recipe">{{attributes.name}}</a></h4>
           <p>{{attributes.introduction}}</p>
         </div>
+      {{/each}}
     </script>
 
     <script id="show-recipe" type="text/x-handlebars-template">
+      <div class="cell">
+        <ul id="form-accordion" class="accordion" data-accordion data-allow-all-closed="true">
+          <li class="accordion-item" data-accordion-item>
+            <a href="#" class="accordion-title">Update Recipe</a>
+
+            <div class="accordion-content" data-tab-content>
+              <p>Panel 1. Lorem ipsum dolor</p>
+              <a href="#">Nowhere to Go</a>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+
       <div class="grid-container">
         <div class="grid-x">
           <div class="cell text-center">
@@ -77,7 +107,22 @@
     </script>
 
     <script id="ingredients-index" type="text/x-handlebars-template">
-        <div class="cell">
+      <div class="cell">
+        <ul id="form-accordion" class="accordion" data-accordion data-allow-all-closed="true">
+          <li class="accordion-item" data-accordion-item>
+            <a href="#" class="accordion-title">New Ingredient</a>
+
+            <div class="accordion-content" data-tab-content>
+              <p>Panel 1. Lorem ipsum dolor</p>
+              <a href="#">Nowhere to Go</a>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+
+      {{#each list}}
+        <div class="cell medium-4">
           <h5>{{attributes.name}}</h5>
           <ul class='no-bullet'>
             <li>{{attributes.calories}} calories per 100g</li>
@@ -86,6 +131,7 @@
             <li>{{attributes.carb}} percent carbohydrates</li>
           </ul>
         </div>
+      {{/each}}
     </script>
   </body>
 </html>

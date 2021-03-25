@@ -1,17 +1,25 @@
 $(document).foundation();
 
-// initialize constructor variable
-// let recipes = null; 
+let recipes = null;
+let ingredients = null;
 
 // Define the Recipes constructor
 class RecipesConstructor {
 	constructor(json){
 		this.template = document.querySelector("#recipes-index").innerHTML;
 		this.recipeArr = json.data;
-		this.ingredients = new IngredientsConstructor(json.included);
 		this.json = json;
 
-		index(this.recipeArr, this.template);
+		this.index;
+		this.bindShowLinks;
+	}
+
+	set ingredients(hash){
+		this.ingredients = hash
+	}
+
+	get index(){
+		index(this, this.template);
 		this.bindShowLinks;
 	}
 
@@ -38,12 +46,6 @@ class RecipesConstructor {
 		    }, true);
 		};
 	};
-
-	findRecipe(element, arr){
-		
-
-
-	}
 };
 
 
@@ -54,8 +56,8 @@ class IngredientsConstructor {
 		this.list = json
 	}
 
-	ingredientsIndex(){
-		index(this.list, this.template)
+	get index(){
+		index(this, this.template)
 	};
 };
 
@@ -70,63 +72,55 @@ class RecipeConstructor {
 	};
 
 	get index(){
-		index([this], this.template)
+		index(this, this.template)
 	}
 };
 
 
 
-document.addEventListener('DOMContentLoaded', function(){
-	fetch('http://localhost:3000/recipes')
-		// Handle success
-	    .then(response => response.json())  // convert to json
-	    .then(json => defineRecipes(json) ) // send json to function so new recipes constructor can be saved to variable
-	    .catch(err => console.log('Request Failed', err)); // Catch errors	
-});
-
-function defineRecipes(json){
-	const recipes = new RecipesConstructor(json);
+function defineContent(json){
+	recipes = new RecipesConstructor(json);
+	
+	let ingredientsArr = []
+	for (let i = 0; i < json.included.length; i++){
+	  if (json.included[i].type == "ingredient") {
+	    ingredientsArr.push(json.included[i])
+	  } else {
+	    console.log('no');
+	  }
+	}
+	ingredients = new IngredientsConstructor(ingredientsArr);
 };
 
 function index(data, template){
   // compile it using Handlebars
   const compiledTemplate = Handlebars.compile(template);
-  let html = "";
 
-  for (let i = 0; i < data.length; i++){
-	  // get the HTML after passing the template the context
-	  html += compiledTemplate(data[i]);
-	};  // get the element to set the new HTML into
+  let html = compiledTemplate(data);
+
   const destination = document.querySelector("#content");
   // set the new HTML
   destination.innerHTML = html;
+
+  let elem = new Foundation.Accordion($('#form-accordion'));
 };
 
-function show(json, template){
-  // compile it using Handlebars
-  const compiledTemplate = Handlebars.compile(template);
 
-  // define recipe
-  recipe = new RecipeConstructor( json.data.attributes.name,
-																	json.data.attributes.introduction,
-																	json.data.attributes.ingredients_with_qty,
-																	json.data.attributes.method
-																	); 
-  // get the HTML after passing the template the context
-	const  html = compiledTemplate(recipe);
-  // get the element to set the new HTML into
-  const destination = document.querySelector("#content");
-
-	// set the new HTML
-  destination.innerHTML = html;
-};
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function(){
+	fetch('http://localhost:3000/recipes')
+		// Handle success
+	    .then(response => response.json())  // convert to json
+	    .then(json => defineContent(json) ) // send json to function so new recipes constructor can be saved to variable
+	    .catch(err => console.log('Request Failed', err)); // Catch errors	
+});
 
 document.querySelector("#recipes").addEventListener('click', function(){
-	recipes.index();
+	recipes.index;
 	$('#nav-menu').foundation('close');
 });
 
 document.querySelector("#ingredients").addEventListener('click', function(){
-	recipes.ingredients.index();
+	ingredients.index;
 	$('#nav-menu').foundation('close');
 });
