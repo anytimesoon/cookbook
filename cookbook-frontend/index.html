@@ -57,20 +57,20 @@
       <div class="grid-container">
         <div class="grid-x">
           <div class="cell text-center">
-            <h1>{{attributes.name}}</h1>
-            <p>{{attributes.introduction}}</p>
+            <h1>{{name}}</h1>
+            <p>{{introduction}}</p>
           </div>
 
           <div class="cell">
             <h3>Ingredients</h3>
             <ul>
-              {{#each attributes.ingredients_with_qty}}
+              {{#each ingredients}}
                 <li>{{this}}</li>
               {{/each}}
             </ul>
 
             <h3>Method</h3>
-            <p>{{attributes.method}}</p>
+            <p>{{method}}</p>
           </div>
         </div>
       </div>

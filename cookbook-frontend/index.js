@@ -1,88 +1,132 @@
 $(document).foundation();
 
+// initialize constructor variable
+// let recipes = null; 
+
 // Define the Recipes constructor
 class RecipesConstructor {
-	getRecipes(){
-		fetch('http://localhost:3000/recipes')
-		// Handle success
-	    .then(response => response.json())  // convert to json
-	    .then(json => index(json, document.querySelector("#recipes-index").innerHTML)) 
-	    .catch(err => console.log('Request Failed', err)); // Catch errors	
+	constructor(json){
+		this.template = document.querySelector("#recipes-index").innerHTML;
+		this.recipeArr = json.data;
+		this.ingredients = new IngredientsConstructor(json.included);
+		this.json = json;
+
+		index(this.recipeArr, this.template);
+		this.bindShowLinks;
 	}
-}
+
+	get bindShowLinks(){
+		const elements = document.getElementsByClassName("show-recipe");
+
+		const stuff = this.recipeArr;
+
+		for (let i = 0; i < elements.length; i++) {
+		    elements[i].addEventListener('click', function(){
+					    	const id = this.getAttribute("id");
+
+			    	    for (let i = 0; i < stuff.length; i++){
+						    	if (stuff[i].id == id) {
+						    		let currentRecipe = new RecipeConstructor(  stuff[i].attributes.name,
+						    																								stuff[i].attributes.introduction,
+						    																								stuff[i].attributes.ingredients_with_qty,
+						    																								stuff[i].attributes.method
+						    																							);
+						    		currentRecipe.index;
+						    	};
+						    };
+
+		    }, true);
+		};
+	};
+
+	findRecipe(element, arr){
+		
+
+
+	}
+};
+
 
 // Define the Ingredients Constructor
 class IngredientsConstructor {
-	getIngredients(){
-		fetch('http://localhost:3000/ingredients')
-		// Handle success
-	    .then(response => response.json())  // convert to json
-	    .then(json => index(json, document.querySelector("#ingredients-index").innerHTML))
-	    .catch(err => console.log('Request Failed', err)); // Catch errors	
+	constructor(json){
+		this.template = document.querySelector("#ingredients-index").innerHTML
+		this.list = json
 	}
-}
 
-const recipeIndex = new RecipesConstructor();
-const ingredientIndex = new IngredientsConstructor();
+	ingredientsIndex(){
+		index(this.list, this.template)
+	};
+};
+
+// Define a recipe
+class RecipeConstructor {
+	constructor(name, introduction, ingredients, method) {
+		this.template = document.querySelector("#show-recipe").innerHTML;
+		this.name = name;
+		this.introduction = introduction;
+		this.ingredients = ingredients;
+		this.method = method;
+	};
+
+	get index(){
+		index([this], this.template)
+	}
+};
+
+
 
 document.addEventListener('DOMContentLoaded', function(){
-	// getRecipes();
-	recipeIndex.getRecipes();
+	fetch('http://localhost:3000/recipes')
+		// Handle success
+	    .then(response => response.json())  // convert to json
+	    .then(json => defineRecipes(json) ) // send json to function so new recipes constructor can be saved to variable
+	    .catch(err => console.log('Request Failed', err)); // Catch errors	
 });
 
-function index(json, source){
+function defineRecipes(json){
+	const recipes = new RecipesConstructor(json);
+};
+
+function index(data, template){
   // compile it using Handlebars
-  const template = Handlebars.compile(source);
+  const compiledTemplate = Handlebars.compile(template);
   let html = "";
 
-  for (let i = 0; i < json.data.length; i++){
+  for (let i = 0; i < data.length; i++){
 	  // get the HTML after passing the template the context
-	  html += template(json.data[i]);
-	};
-  // get the element to set the new HTML into
+	  html += compiledTemplate(data[i]);
+	};  // get the element to set the new HTML into
   const destination = document.querySelector("#content");
   // set the new HTML
   destination.innerHTML = html;
-
-  bindShowLinks()
 };
 
-function show(json, source){
+function show(json, template){
   // compile it using Handlebars
-  const template = Handlebars.compile(source);
+  const compiledTemplate = Handlebars.compile(template);
 
-	  // get the HTML after passing the template the context
-	const  html = template(json.data);
+  // define recipe
+  recipe = new RecipeConstructor( json.data.attributes.name,
+																	json.data.attributes.introduction,
+																	json.data.attributes.ingredients_with_qty,
+																	json.data.attributes.method
+																	); 
+  // get the HTML after passing the template the context
+	const  html = compiledTemplate(recipe);
   // get the element to set the new HTML into
   const destination = document.querySelector("#content");
 
-  // set the new HTML
+	// set the new HTML
   destination.innerHTML = html;
 };
-
-function bindShowLinks(){
-	const elements = document.getElementsByClassName("show-recipe");
-
-	const myFunction = function() {
-	    const id = this.getAttribute("id");
-	    fetch('http://localhost:3000/recipes/' + id)
-		// Handle success
-		    .then(response => response.json())  // convert to json
-		    .then(json => show(json, document.querySelector("#show-recipe").innerHTML))    //print data to console 
-		    .catch(err => console.log('Request Failed', err)); // Catch errors	
-	};
-
-	for (let i = 0; i < elements.length; i++) {
-	    elements[i].addEventListener('click', myFunction, false);
-	}
-}
 
 document.querySelector("#recipes").addEventListener('click', function(){
-	recipeIndex.getRecipes();
+	recipes.index();
 	$('#nav-menu').foundation('close');
 });
 
 document.querySelector("#ingredients").addEventListener('click', function(){
-	ingredientIndex.getIngredients();
+	recipes.ingredients.index();
 	$('#nav-menu').foundation('close');
 });
