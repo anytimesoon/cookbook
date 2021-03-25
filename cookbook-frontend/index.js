@@ -14,13 +14,15 @@ class RecipesConstructor {
 		this.bindShowLinks;
 	}
 
-	set ingredients(hash){
-		this.ingredients = hash
-	}
-
 	get index(){
 		index(this, this.template);
 		this.bindShowLinks;
+
+	  document.querySelector("form").addEventListener('submit', function(e){
+			e.preventDefault();
+
+			submitForm("http://localhost:3000/recipes", this)
+		});
 	}
 
 	get bindShowLinks(){
@@ -105,6 +107,47 @@ function index(data, template){
   let elem = new Foundation.Accordion($('#form-accordion'));
 };
 
+function submitForm(url, form){
+	let configObj = {
+		method: "POST",
+	  headers: {
+	    "Content-Type": "application/json",
+	    "Accept": "application/json"
+	  },
+	  body: serializeFormData(form)
+	};
+
+	fetch(url, configObj)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(object) {
+    console.log(object);
+  })
+  .catch(function(error) {
+    alert("Something bad happened :(");
+    console.log(error.message);
+  });
+}
+
+function serializeFormData(form){
+	values = {}
+	for (let i = 0; i < form.elements.length; i++) {
+		let keys = form.elements[i].name.split('|');
+
+		if (keys[0] in values == false ){
+			values[keys[0]] = {}
+			values[keys[0]][keys[1]] = form.elements[i].value
+		} else {
+			values[keys[0]][keys[1]] = form.elements[i].value
+		}
+
+	}
+
+	debugger;
+
+	return JSON.stringify(values)
+}
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', function(){

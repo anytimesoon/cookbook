@@ -51,11 +51,16 @@
         <ul id="form-accordion" class="accordion" data-accordion data-allow-all-closed="true">
           <li class="accordion-item" data-accordion-item>
 
-            <a href="#" class="accordion-title is-active">New Recipe</a>
+            <a href="#" id="new-recipe" class="accordion-title is-active">New Recipe</a>
 
             <div class="accordion-content" data-tab-content>
-              <p>Panel 1. Lorem ipsum dolor</p>
-              <a href="#">Nowhere to Go</a>
+                  <form action="http://localhost:3000/dogs" method="POST">
+                    <label> Name: <input type="text" name="recipe|name" id="recipeName" /></label>
+                    <label> Introduction: <input type="text" name="recipe|introduction" id="recipeIntroduction" /></label>
+                    <label> Method: </label>
+                    <textarea name="recipe|method" id="recipeMethod" rows="10" ></textarea>
+                    <input type="submit" id="submit" value="Submit" class="button" />
+                  </form>
             </div>
           </li>
         </ul>
@@ -70,20 +75,6 @@
     </script>
 
     <script id="show-recipe" type="text/x-handlebars-template">
-      <div class="cell">
-        <ul id="form-accordion" class="accordion" data-accordion data-allow-all-closed="true">
-          <li class="accordion-item" data-accordion-item>
-            <a href="#" class="accordion-title">Update Recipe</a>
-
-            <div class="accordion-content" data-tab-content>
-              <p>Panel 1. Lorem ipsum dolor</p>
-              <a href="#">Nowhere to Go</a>
-            </div>
-          </li>
-          
-        </ul>
-      </div>
-
       <div class="grid-container">
         <div class="grid-x">
           <div class="cell text-center">
@@ -110,11 +101,9 @@
       <div class="cell">
         <ul id="form-accordion" class="accordion" data-accordion data-allow-all-closed="true">
           <li class="accordion-item" data-accordion-item>
-            <a href="#" class="accordion-title">New Ingredient</a>
+            <a href="#" id="new-ingedient" class="accordion-title">New Ingredient</a>
 
             <div class="accordion-content" data-tab-content>
-              <p>Panel 1. Lorem ipsum dolor</p>
-              <a href="#">Nowhere to Go</a>
             </div>
           </li>
           
